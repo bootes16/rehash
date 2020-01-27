@@ -1,5 +1,8 @@
 # rehash - Checksums and CRCs
 
+## Overview
+C++ library implementing some checksums and CRCs.
+
 ## sum(1) checksum command
 Implemented both BSD and SysV algorithms.
 Implemented main front end which apes the existing sum(1) command syntax.
