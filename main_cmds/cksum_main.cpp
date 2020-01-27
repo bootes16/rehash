@@ -36,21 +36,30 @@ void process_files(CheckSum&& cs, vector<string>& files) {
     return;
 }
 
+//
+// Usage text.
+//
+void usage(void) {
+    cout <<
+        "Usage: cksum [FILE]...\n"
+        "  or:  cksum [OPTION]\n"
+        "Print CRC checksum and byte counts of each FILE.\n\n"
+        "      --help     display this help and exit\n"
+        "      --version  output version information and exit\n\n"
+        "Behaviour and options mimic the GNU coreutils cksum(1) command.\n";
+}
+
 int main(int argc, char *argv[]) {
-    bool bsd_algo = true;
     vector<string> files;
 
     for (int i = 1; i < argc; i++) {
         string s {argv[i]};
-        if (0 == s.compare("-r")) {
-            bsd_algo = true;
-        } else if (0 == s.compare("-s") || 0 == s.compare("--sysv")) {
-            bsd_algo = false;
-        } else if (0 == s.compare("--help")) {
-            cout << "Usage:" << endl;
-            return 1;
+        if (0 == s.compare("--help")) {
+            usage();
+            return 0;
         } else if (0 == s.compare("--version")) {
             cout << "Version 0.1" << endl;
+            return 0;
         } else {
             files.push_back(string(argv[i]));
         }

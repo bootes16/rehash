@@ -52,10 +52,7 @@ void usage(void) {
         "  -s, --sysv      use System V sum algorithm, use 512 bytes blocks\n"
         "      --help     display this help and exit\n"
         "      --version  output version information and exit\n\n"
-        "Options mimic GNU coreutils sum. See:\n"
-        "GNU coreutils online help: <http://www.gnu.org/software/coreutils/>\n"
-        "Full documentation at: <http://www.gnu.org/software/coreutils/sum>\n"
-    << endl;
+        "Behaviour and ptions mimic GNU coreutils sum(1) command.\n";
 }
 
 //
