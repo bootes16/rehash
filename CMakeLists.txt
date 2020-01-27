@@ -11,4 +11,4 @@ message(STATUS "PROJECT_BINARY_DIR: ${PROJECT_BINARY_DIR}")
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_subdirectory(src)
-add_subdirectory(main_cmds)
+add_subdirectory(exe)
