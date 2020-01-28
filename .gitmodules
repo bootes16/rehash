@@ -1,0 +1,3 @@
+[submodule "functional_streambuf"]
+	path = functional_streambuf
+	url = git@github.com:bootes16/functional_streambuf.git
