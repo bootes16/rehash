@@ -7,4 +7,5 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_subdirectory(src)
 add_subdirectory(exe)
+add_subdirectory(simple_prng)
 add_subdirectory(test)

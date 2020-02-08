@@ -1,3 +1,6 @@
 [submodule "functional_streambuf"]
 	path = functional_streambuf
 	url = git@github.com:bootes16/functional_streambuf.git
+[submodule "simple_prng"]
+	path = simple_prng
+	url = git@github.com:bootes16/simple_prng.git
