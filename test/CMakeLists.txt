@@ -19,6 +19,7 @@ set(GTEST_LIB ${GTEST_DIR}/build/lib)
 include_directories(
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/functional_streambuf/include
+    ${PROJECT_SOURCE_DIR}/simple_prng/include
     ${GTEST_INCLUDE}
 )
 

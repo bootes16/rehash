@@ -22,6 +22,7 @@ void process_files(CheckSum&& cs, vector<string>& files) {
     if (0 == files.size()) {
         cs.clear();
         cs.append(cin);
+        cout << cs << endl;
         return;
     }
 
