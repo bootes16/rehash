@@ -1,3 +1,19 @@
+//
+// ARM hardware CRC32.
+// compiled with: clang++ -march=armv8+crc
+//
+// Computes the CRC32 of the input using ARM HW CRC.
+// The ARM Neon __crc32 intrinsic peculiarly reverses the bit order of it's
+// input argument CRC and Character values before applying the CRC algorithm
+// To retain compatibility with Unix cksum CRC32, the following is done:
+// * When updating the CRC with a character, reverse the bit-order of the character
+//   using the LUT below.
+// * After finalising the checksum, the 32-bit result needs to be bit-order reversed
+//   before (or after) bit inversion required by Unix cksum.
+//
+// Performance note: Benchmarking on at Raspberry Pi 3 B+, this implementation
+// takes about 7 times longer to compute a checksum than the default software cksum.
+//
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -6,6 +22,7 @@
 
 using namespace std;
 
+// LUT of reversed bit patterns for uint8_t.
 static uint8_t REV_U8[256] = {
     0x00, 0x80, 0x40, 0xc0, 0x20, 0xa0, 0x60, 0xe0, 0x10, 0x90, 0x50, 0xd0, 0x30, 0xb0, 0x70, 0xf0,
     0x08, 0x88, 0x48, 0xc8, 0x28, 0xa8, 0x68, 0xe8, 0x18, 0x98, 0x58, 0xd8, 0x38, 0xb8, 0x78, 0xf8,
@@ -25,7 +42,9 @@ static uint8_t REV_U8[256] = {
     0x0f, 0x8f, 0x4f, 0xcf, 0x2f, 0xaf, 0x6f, 0xef, 0x1f, 0x9f, 0x5f, 0xdf, 0x3f, 0xbf, 0x7f, 0xff
 };
 
-uint32_t rev_u32(const uint32_t a) {
+
+// Reverse a uint32_t
+static uint32_t rev_u32(const uint32_t a) {
     uint32_t x = a;
 	x = (((x & 0xaaaaaaaa) >> 1) | ((x & 0x55555555) << 1));
 	x = (((x & 0xcccccccc) >> 2) | ((x & 0x33333333) << 2));
