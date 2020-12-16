@@ -47,10 +47,10 @@ public:
 
     void update(istream& in) {
         uint8_t ch;
-        ch = cin.get();
+        ch = in.get();
         for (; in; count++) {
             crc = crc32(crc, ch);
-            ch = cin.get();
+            ch = in.get();
         }
     }
 
