@@ -4,3 +4,6 @@
 [submodule "simple_prng"]
 	path = simple_prng
 	url = git@github.com:bootes16/simple_prng.git
+[submodule "googletest"]
+	path = googletest
+	url = https://github.com/google/googletest
